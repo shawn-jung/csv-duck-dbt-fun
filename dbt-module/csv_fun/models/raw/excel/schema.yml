@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: raw_cart_sales_by_minh
+    description: Raw cart sales from Minh, sourced from Excel import.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: date_event
+        description: Date of the transaction.
+        data_type: date
+        data_tests:
+          - not_null
+      - name: customer_name
+        description: Customer name.
+        data_type: varchar
+      - name: category
+        description: Item category.
+        data_type: varchar
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Youth', 'WomenVneck', 'AdultUnisex', 'Hoodie', 'YouthHoodie']
+      - name: size
+        description: Normalised item size.
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['XS', 'S', 'M', 'L', 'XL', '2XL']
+      - name: qty
+        description: Quantity sold.
+        data_type: integer
+        data_tests:
+          - not_null

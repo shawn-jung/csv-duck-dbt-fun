@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: raw_inventory_control_log_gsheet_20241104
+    description: Raw inventory control log sourced from Google Sheets (snapshot as of 2024-11-04).
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: category
+        description: Item category.
+        data_type: varchar
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Youth', 'WomenVneck', 'AdultUnisex', 'Hoodie', 'YouthHoodie']
+      - name: size
+        description: Item size.
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['XS', 'S', 'M', 'L', 'XL', '2XL']
+      - name: qty
+        description: Quantity on hand.
+        data_type: integer
+        data_tests:
+          - not_null
+
+  - name: raw_new_merge_quang_garage
+    description: Raw merged inventory from Quang's garage, sourced from Google Sheets.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: category
+        description: Item category (mapped from source column "type").
+        data_type: varchar
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Youth', 'WomenVneck', 'AdultUnisex', 'Hoodie', 'YouthHoodie']
+      - name: size
+        description: Item size.
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['XS', 'S', 'M', 'L', 'XL', '2XL']
+      - name: qty
+        description: Quantity on hand (mapped from source column "quantity").
+        data_type: integer
+        data_tests:
+          - not_null

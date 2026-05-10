@@ -1,0 +1,13 @@
+csv_fun:
+  outputs:
+    dev:
+      type: duckdb
+      path: ../../duckdb-files/dev.duckdb
+      threads: 2
+
+    prod:
+      type: duckdb
+      path: ../../duckdb-files/prod.duckdb
+      threads: 4
+
+  target: dev

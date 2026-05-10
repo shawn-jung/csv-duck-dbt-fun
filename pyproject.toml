@@ -3,14 +3,56 @@ name = "csv-duck-dbt-fun"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.13, <3.14"
 dependencies = [
     "dbt-core>=1.11.9",
     "dbt-duckdb>=1.10.1",
-    "duckdb>=1.5.2",
+    "duckdb==1.5.2",
+    "numpy>=2.4.4",
+    "pandas>=3.0.2",
 ]
 
 [dependency-groups]
 dev = [
     "ruff>=0.15.12",
+    "poethepoet>=0.34.0",
 ]
+
+[tool.poe.env]
+DBT_PROFILES_DIR = "${POE_ROOT}/.dbt"
+
+[tool.poe.tasks.auth]
+help = "One-time Google Sheets OAuth setup"
+cmd  = "python setup_gsheets.py"
+
+[tool.poe.tasks.seed]
+help = "Load seed tables (dim_size, dim_category)"
+cmd  = "dbt seed"
+cwd  = "dbt-module/csv_fun"
+
+[tool.poe.tasks.run]
+help = "Build all dbt models"
+cmd  = "dbt run"
+cwd  = "dbt-module/csv_fun"
+
+[tool.poe.tasks.test]
+help = "Run all dbt tests"
+cmd  = "dbt test"
+cwd  = "dbt-module/csv_fun"
+
+[tool.poe.tasks.build]
+help = "Full pipeline: seed + run + test"
+cmd  = "dbt build"
+cwd  = "dbt-module/csv_fun"
+
+[tool.poe.tasks.balance]
+help = "Print current inventory balance (dev)"
+cmd  = "python show_balance.py"
+
+[tool.poe.tasks.balance-prod]
+help = "Print current inventory balance (prod)"
+cmd  = "python show_balance.py --env prod"
+
+[tool.poe.tasks.regular-build]
+help     = "Auth, full pipeline build, then show prod balance"
+sequence = ["auth", "build", "balance-prod"]

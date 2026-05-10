@@ -1,4 +1,4 @@
-# Python-generated files
+# Python
 __pycache__/
 *.py[oc]
 build/
@@ -9,4 +9,27 @@ wheels/
 # Virtual environments
 .venv
 
-# IDE specific
+# IDE / dbt user config
+.dbt/.user.yml
+
+# dbt build artifacts
+dbt-module/csv_fun/target/
+dbt-module/csv_fun/dbt_packages/
+dbt-module/csv_fun/logs/
+
+# Logs (repo root)
+logs/
+
+# Excel exports — keep only the sample file
+excel-files/export/*
+!excel-files/export/f_inventory_balance_20260509_sample.xlsx
+
+# Excel imports — keep only the sample file
+excel-files/import/*
+!excel-files/import/cart-sales-by-minh.xlsx
+
+## LLM
+.claude/settings.local.json
+
+## duckdb files
+duckdb-files/prod.duckdb
