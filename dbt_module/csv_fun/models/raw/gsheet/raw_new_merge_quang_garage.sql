@@ -1,6 +1,6 @@
 {{ config(materialized='table') }}
 
-select 
+select
     type as category,
     {{ cleanse_size('size') }} as size,
     coalesce(quantity::INTEGER,0) as qty

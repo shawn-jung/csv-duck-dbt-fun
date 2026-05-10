@@ -1,6 +1,6 @@
 {{ config(materialized='table') }}
 
-select 
+select
     Date as date_event,
     Customer as customer_name,
     Category as category,

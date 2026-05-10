@@ -8,18 +8,18 @@
 -- calculate current balance of inventory based on f_sales and f_inventory_baseline
 
 with baseline as (
-    select 
-        category, 
-        size, 
+    select
+        category,
+        size,
         sum(qty) as qty
     from {{ ref('f_inventory_baseline') }}
     group by 1, 2
 ),
 
 sold as (
-    select 
-        category, 
-        size, 
+    select
+        category,
+        size,
         sum(qty) as qty
     from {{ ref('f_sales') }}
     group by 1, 2

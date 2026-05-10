@@ -45,7 +45,7 @@ known-first-party = ["csv_duck_dbt_fun"]
 python_version = "3.13"
 strict = false
 ignore_missing_imports = true
-exclude = ["dbt-module/"]
+exclude = ["dbt_module/"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -61,22 +61,22 @@ cmd  = "python setup_gsheets.py"
 [tool.poe.tasks.seed]
 help = "Load seed tables (dim_size, dim_category)"
 cmd  = "dbt seed"
-cwd  = "dbt-module/csv_fun"
+cwd  = "dbt_module/csv_fun"
 
 [tool.poe.tasks.run]
 help = "Build all dbt models"
 cmd  = "dbt run"
-cwd  = "dbt-module/csv_fun"
+cwd  = "dbt_module/csv_fun"
 
 [tool.poe.tasks.test]
 help = "Run all dbt tests"
 cmd  = "dbt test"
-cwd  = "dbt-module/csv_fun"
+cwd  = "dbt_module/csv_fun"
 
 [tool.poe.tasks.build]
 help = "Full pipeline: seed + run + test"
 cmd  = "dbt build"
-cwd  = "dbt-module/csv_fun"
+cwd  = "dbt_module/csv_fun"
 
 [tool.poe.tasks.balance]
 help = "Print current inventory balance (dev)"

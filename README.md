@@ -50,7 +50,7 @@ uv run poe test         # run data quality tests
 <summary>Equivalent raw dbt commands</summary>
 
 ```bash
-cd dbt-module/csv_fun
+cd dbt_module/csv_fun
 uv run dbt seed
 uv run dbt run
 uv run dbt test
@@ -65,7 +65,7 @@ After `build`, the inventory balance is exported automatically to `excel-files/e
 To run a single model directly:
 
 ```bash
-cd dbt-module/csv_fun && uv run dbt run --select f_inventory_balance
+cd dbt_module/csv_fun && uv run dbt run --select f_inventory_balance
 ```
 
 ## Viewing the balance
@@ -114,7 +114,7 @@ uv run python show_balance.py --env prod
 ├── excel-files/
 │   ├── import/                      # source Excel files
 │   └── export/                      # generated balance reports (gitignored except sample)
-└── dbt-module/csv_fun/
+└── dbt_module/csv_fun/
     ├── seeds/
     │   ├── dim_size.csv             # canonical shirt sizes with sort order
     │   └── dim_category.csv         # canonical shirt categories

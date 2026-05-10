@@ -12,7 +12,7 @@ import os
 
 import duckdb
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "dbt-module/csv_fun/dev.duckdb")
+DB_PATH = os.path.join(os.path.dirname(__file__), "dbt_module/csv_fun/dev.duckdb")
 
 conn = duckdb.connect(DB_PATH)
 
@@ -31,6 +31,6 @@ SHEET_URL = "https://docs.google.com/spreadsheets/d/1Xrm3Luj-ccG2X7OT3kfl2QE6aIX
 print("\nVerifying access — reading first 3 rows ...")
 result = conn.execute(f"SELECT * FROM '{SHEET_URL}' LIMIT 3").fetchdf()
 print(result)
-print("\nSetup complete. You can now run `dbt run` from dbt-module/csv_fun/.")
+print("\nSetup complete. You can now run `dbt run` from dbt_module/csv_fun/.")
 
 conn.close()

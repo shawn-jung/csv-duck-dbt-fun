@@ -10,7 +10,7 @@ with raw_in_person_sales as (
         qty < 0 as is_return,
         'in_person' as sale_type
     from {{ ref('raw_in_person_orders') }}
-    where qty != 0 
+    where qty != 0
     /* 0 or null means, they changed mind or we forgot, so no sale that day */
 ),
 in_person_sales as (

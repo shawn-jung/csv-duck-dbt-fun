@@ -24,7 +24,7 @@ uv run poe lint            # ruff check + ruff format + mypy
 uv run poe regular-build   # auth → build → show prod balance
 
 # Single model
-cd dbt-module/csv_fun && uv run dbt run --select f_inventory_balance
+cd dbt_module/csv_fun && uv run dbt run --select f_inventory_balance
 ```
 
 `poe` tasks automatically set `DBT_PROFILES_DIR`. When running raw `dbt` commands directly, first run `source env_set.sh`.
@@ -38,7 +38,7 @@ Excel files  ──┤──▶ raw/ models ──▶ f_inventory_baseline ─�
                 └──▶ raw/ models ──▶ f_sales  ─────────────┘
 ```
 
-**dbt project** lives in `dbt-module/csv_fun/`. Profile (`csv_fun`) is in `.dbt/profiles.yml`. All models are materialized as tables.
+**dbt project** lives in `dbt_module/csv_fun/`. Profile (`csv_fun`) is in `.dbt/profiles.yml`. All models are materialized as tables.
 
 **Two model layers:**
 - `models/raw/gsheet/` — reads live Google Sheets URLs directly via the DuckDB `gsheets` community extension
@@ -72,5 +72,5 @@ duckdb -readonly duckdb-files/dev.duckdb
 
 - **Package manager:** `uv` (Python 3.13 pinned in `.python-version`)
 - **Linter/formatter:** `ruff` (line length 100, checks: W, F, I, B, SIM)
-- **Type checker:** `mypy` (strict=false; `dbt-module/` excluded)
+- **Type checker:** `mypy` (strict=false; `dbt_module/` excluded)
 - **Pre-commit hooks:** trailing whitespace, LF endings, YAML/TOML validation, ruff

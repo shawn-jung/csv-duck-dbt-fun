@@ -13,9 +13,9 @@ wheels/
 .dbt/.user.yml
 
 # dbt build artifacts
-dbt-module/csv_fun/target/
-dbt-module/csv_fun/dbt_packages/
-dbt-module/csv_fun/logs/
+dbt_module/csv_fun/target/
+dbt_module/csv_fun/dbt_packages/
+dbt_module/csv_fun/logs/
 
 # Logs (repo root)
 logs/
@@ -33,5 +33,6 @@ excel-files/import/*
 
 ## duckdb files
 duckdb-files/prod.duckdb
+dbt_module/csv_fun/*.duckdb
 
 .DS_Store

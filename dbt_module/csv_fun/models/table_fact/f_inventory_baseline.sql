@@ -1,8 +1,8 @@
 {{ config(materialized='table') }}
 
-select 
-    category, 
-    size, 
+select
+    category,
+    size,
     qty
 from {{ ref('raw_inventory_control_log_gsheet_20241104') }}
 
