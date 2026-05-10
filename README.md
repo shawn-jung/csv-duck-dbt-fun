@@ -4,7 +4,7 @@ Inventory tracking pipeline for club apparel using DuckDB + dbt. Ingests data fr
 
 ## Inspiration
 Xebia Data's [dbt-excel](https://dbt-excel.com/) project was a great inspiration although it's meant to be an April Fool's joke.
-And [duckdb_gsheets repo](https://github.com/evidence-dev/duckdb_gsheets) by Evidence team gave me a confidence that it's doable alogn with the mighty dbt-core and duckdb.
+And [duckdb_gsheets repo](https://github.com/evidence-dev/duckdb_gsheets) by Evidence team gave me a confidence that it's doable along with the mighty dbt-core and duckdb.
 
 ## Setup
 
