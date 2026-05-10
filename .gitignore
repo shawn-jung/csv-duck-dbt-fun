@@ -33,3 +33,5 @@ excel-files/import/*
 
 ## duckdb files
 duckdb-files/prod.duckdb
+
+.DS_Store
