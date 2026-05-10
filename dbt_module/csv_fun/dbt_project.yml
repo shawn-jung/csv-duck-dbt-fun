@@ -1,0 +1,25 @@
+name: 'csv_fun'
+version: '1.0.0'
+
+profile: 'csv_fun'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Load gsheets extension at the start of every dbt run so models can query
+# Google Sheets via URL. The persistent secret is created once by setup_gsheets.py.
+on-run-start:
+  - "LOAD gsheets"
+  - "INSTALL excel; LOAD excel"
+
+models:
+  csv_fun:
+    +materialized: table
