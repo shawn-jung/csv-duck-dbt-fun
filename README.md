@@ -1,6 +1,6 @@
 # csv-duck-dbt-fun
 
-Inventory tracking pipeline for club apparel using DuckDB + dbt. Ingests data from Google Sheets and Excel files, applies transformations, and exports a balance report to Excel. This could have been a pivot in Excel if I can copy-paste every week, but that's a heavy conginitive load for a person who dreams in dbt and SQL. So I go with duckdb. 
+Inventory tracking pipeline for club apparel using DuckDB + dbt. Ingests data from Google Sheets and Excel files, applies transformations, and exports a balance report to Excel. This could have been a pivot in Excel if I can copy-paste every week, but that's a heavy conginitive load for a person who dreams in dbt and SQL. So I go with duckdb.
 
 ## Setup
 
@@ -96,6 +96,7 @@ uv run python show_balance.py --env prod
 | `uv run poe build` | Full pipeline: seed + run + test |
 | `uv run poe balance` | Print inventory balance (dev) |
 | `uv run poe balance-prod` | Print inventory balance (prod) |
+| `uv run poe lint` | Lint and format all Python files |
 | `uv run poe regular-build` | Auth → build → show prod balance |
 
 ## Project structure
@@ -108,7 +109,7 @@ uv run python show_balance.py --env prod
 ├── .dbt/
 │   └── profiles.yml                 # dbt connection config (dev/prod DuckDB files)
 ├── duckdb-files/                    # local duckdb files where tables are materialized (gitignored excep prod)
-│   ├── dev.duckdb                   
+│   ├── dev.duckdb
 │   └── prod.duckdb
 ├── excel-files/
 │   ├── import/                      # source Excel files

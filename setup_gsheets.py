@@ -8,8 +8,9 @@ Run once from the repo root:
     uv run python setup_gsheets.py
 """
 
-import duckdb
 import os
+
+import duckdb
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "dbt-module/csv_fun/dev.duckdb")
 

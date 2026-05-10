@@ -8,10 +8,11 @@ Usage:
 
 import argparse
 import os
+
 import duckdb
 
 DB_PATHS = {
-    "dev":  "duckdb-files/dev.duckdb",
+    "dev": "duckdb-files/dev.duckdb",
     "prod": "duckdb-files/prod.duckdb",
 }
 

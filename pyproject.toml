@@ -1,7 +1,7 @@
 [project]
 name = "csv-duck-dbt-fun"
 version = "0.1.0"
-description = "Add your description here"
+description = "Excel/gSheet to Excel data pipeline with duckdb/dbt"
 readme = "README.md"
 requires-python = ">=3.13, <3.14"
 dependencies = [
@@ -16,7 +16,40 @@ dependencies = [
 dev = [
     "ruff>=0.15.12",
     "poethepoet>=0.34.0",
+    "pre-commit>=4.2.0",
+    "mypy>=1.16.0",
 ]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    # "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    # "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "SIM", # flake8-simplify
+]
+ignore = [
+    "E501", # line too long — handled by ruff-format
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["csv_duck_dbt_fun"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = false
+ignore_missing_imports = true
+exclude = ["dbt-module/"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
 
 [tool.poe.env]
 DBT_PROFILES_DIR = "${POE_ROOT}/.dbt"
@@ -52,6 +85,18 @@ cmd  = "python show_balance.py"
 [tool.poe.tasks.balance-prod]
 help = "Print current inventory balance (prod)"
 cmd  = "python show_balance.py --env prod"
+
+[tool.poe.tasks.mypy]
+help = "Type-check all Python files"
+cmd  = "mypy ."
+
+[tool.poe.tasks.lint]
+help     = "Lint, format, and type-check all Python files"
+sequence = [
+    { cmd = "ruff check --fix ." },
+    { cmd = "ruff format ." },
+    { ref = "mypy" },
+]
 
 [tool.poe.tasks.regular-build]
 help     = "Auth, full pipeline build, then show prod balance"
